@@ -1,21 +1,36 @@
 "use client";
+import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Login = () => {
+    const router = useRouter();
     const [user, setUser] = useState({
         username: "",
         password: "",
     })
-    const handleSubmitForm = (e) => {
+    const handleSubmitForm = async (e) => {
         e.preventDefault();
-
+        try {
+            const response = await axios.post("http://localhost:8000/api/user/login", user, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true
+            })
+            if(response.status === 200) {
+                alert(response.data.message);
+                router.push("/")
+            }
+        } catch(error) {
+            console.log(error);
+        }
         setUser({
             username: "",
             password: "",
         })
     }
-    console.log(user)
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className='w-96 border rounded-md p-5'>

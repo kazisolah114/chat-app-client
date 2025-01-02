@@ -1,8 +1,11 @@
 "use client";
+import axios from 'axios';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const Register = () => {
+    const router = useRouter();
     const [user, setUser] = useState({
         fullName: "",
         username: "",
@@ -10,9 +13,22 @@ const Register = () => {
         confirmPassword: "",
         gender: "",
     })
-    const handleSubmitForm = (e) => {
+    const handleSubmitForm = async (e) => {
         e.preventDefault();
-        console.log(user)
+        try {
+            const response = await axios.post("http://localhost:8000/api/user/register", user, {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                withCredentials: true,
+            })
+            if (response.data.success) {
+                alert(response.data.message);
+                router.push("/login");
+            }
+        } catch (error) {
+            console.log(error);
+        }
         setUser({
             fullName: "",
             username: "",
@@ -21,7 +37,7 @@ const Register = () => {
             gender: "",
         })
     }
-    
+
     return (
         <div className='flex justify-center items-center h-screen'>
             <div className='w-96 border rounded-md p-5'>
@@ -45,11 +61,11 @@ const Register = () => {
                     </div>
                     <div className='flex items-center gap-5 mb-4'>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" id="male" name="gender" value="Male" checked={ user.gender === "Male" } onChange={(e) => setUser({ ...user, gender: e.target.value })} />
+                            <input type="radio" id="male" name="gender" value="Male" checked={user.gender === "Male"} onChange={(e) => setUser({ ...user, gender: e.target.value })} />
                             <label htmlFor='male' className='text-sm'>Male</label>
                         </div>
                         <div className='flex items-center gap-2'>
-                            <input type="radio" id="female" name="gender" value="Female" checked={ user.gender === "Female" } onChange={(e) => setUser({ ...user, gender: e.target.value })} />
+                            <input type="radio" id="female" name="gender" value="Female" checked={user.gender === "Female"} onChange={(e) => setUser({ ...user, gender: e.target.value })} />
                             <label htmlFor='female' className='text-sm'>Female</label>
                         </div>
                     </div>
