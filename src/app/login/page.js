@@ -1,8 +1,10 @@
 "use client";
+import { setAuthUser } from '@/redux/features/userSlice';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const router = useRouter();
@@ -10,6 +12,7 @@ const Login = () => {
         username: "",
         password: "",
     })
+    const dispatch = useDispatch();
     const handleSubmitForm = async (e) => {
         e.preventDefault();
         try {
@@ -20,6 +23,7 @@ const Login = () => {
                 withCredentials: true
             })
             if(response.status === 200) {
+                dispatch(setAuthUser(response.data.userData));
                 alert(response.data.message);
                 router.push("/")
             }
