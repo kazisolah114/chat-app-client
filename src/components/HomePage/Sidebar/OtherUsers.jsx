@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 const OtherUsers = () => {
     useGetOtherUsers();
     const otherUsers = useSelector((store) => store.user.otherUsers);
-    console.log(otherUsers)
     if (!otherUsers) {
         return <div>No user found!</div>
     };
