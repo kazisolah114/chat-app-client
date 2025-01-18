@@ -12,7 +12,7 @@ const MessageContainer = () => {
                 <div className='w-[40rem] h-full flex flex-col'>
                     <OtherUser selectedUser={selectedUser} />
                     <Messages />
-                    <SendMessage />
+                    <SendMessage selectedUser={selectedUser} />
                 </div>
                 :
                 <div className='w-[40rem] text-center flex items-center justify-center h-full'>

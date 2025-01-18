@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Message = ({ message, selectedUser, authState }) => {
     const isReceiver = message.senderId === selectedUser._id;
+
     return (
-        <div>
+        <div >
             {isReceiver ? (
                 // Message from the receiver
                 <div className="chat chat-start">
