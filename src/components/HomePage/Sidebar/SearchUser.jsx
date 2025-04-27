@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const SearchUser = () => {
     const dispatch = useDispatch();
-    const { otherUsers } = useSelector((state) => state.user);
+    const { otherUsers } = useSelector((state) => state.persistedReducer.user);
     const [userSearch, setUserSearch] = useState("");
 
     const handleUserSearch = (event) => {

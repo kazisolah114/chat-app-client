@@ -3,15 +3,19 @@ import SearchUser from './SearchUser';
 import OtherUsers from './OtherUsers';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { setAuthUser } from '@/redux/features/userSlice';
 
 const Sidebar = () => {
     const router = useRouter();
+    const dispatch = useDispatch();
     const handleLogout = async () => {
         try {
             const res = await axios.get(`http://localhost:8000/api/user/logout`, {
                 withCredentials: true,
             })
             if(res.status === 200) {
+                dispatch(setAuthUser(null))
                 router.push("/login")
             }
         } catch(error) {

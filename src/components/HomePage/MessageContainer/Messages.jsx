@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 const Messages = () => {
     useGetMessages();
     const messages = useSelector((state) => state.message.messages);
-    const { selectedUser, authState } = useSelector((state) => state.user)
+    const { selectedUser, authState } = useSelector((state) => state.persistedReducer.user)
     if(!messages) return ;
     return (
         <div className='overflow-auto'>

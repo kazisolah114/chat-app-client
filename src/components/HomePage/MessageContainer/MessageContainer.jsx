@@ -5,7 +5,7 @@ import Messages from './Messages';
 import { useSelector } from 'react-redux';
 
 const MessageContainer = () => {
-    const { selectedUser } = useSelector((state) => state.user)
+    const { selectedUser } = useSelector((state) => state.persistedReducer.user)
     return (
         <div className=''>
             {selectedUser ?

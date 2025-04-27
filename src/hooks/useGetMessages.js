@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const useGetMessages = () => {
-    const { selectedUser } = useSelector((state) => state.user)
+    const { selectedUser } = useSelector((state) => state.persistedReducer.user)
     const messages = useSelector((state) => state.message.messages);
     const dispatch = useDispatch();
     useEffect(() => {

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const OtherUsers = () => {
     useGetOtherUsers();
-    const { otherUsers, searchedUsers } = useSelector((store) => store.user);
+    const { otherUsers, searchedUsers } = useSelector((store) => store.persistedReducer.user);
 
     if (!otherUsers) {
         return <div>No user found!</div>
