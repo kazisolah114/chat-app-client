@@ -24,7 +24,7 @@ const Sidebar = () => {
         }
     }
     return (
-        <div className='col-span-3 max-h-screen overflow-auto p-3'>
+        <div className='p-3'>
             <SearchUser />
             <OtherUsers />
             <div className='mt-4'>
