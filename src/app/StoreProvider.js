@@ -6,11 +6,12 @@ import { io } from 'socket.io-client';
 import { useSelector } from 'react-redux';
 import { setOnlineUsers } from '@/redux/features/userSlice';
 import { PersistGate } from 'redux-persist/integration/react';
+import { setSocket } from '@/redux/features/socketSlice';
 
 const InnerApp = ({ children }) => {
     const { authState } = useSelector((state) => state.persistedReducer.user);
 
-    const [socket, setSocket] = useState(null);
+    // const [socket, setSocket] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const InnerApp = ({ children }) => {
                     userId: authState._id
                 }
             });
-            setSocket(newSocket);
+            dispatch(setSocket(newSocket));
             newSocket.on('connect', () => {
                 console.log("Socket connected", newSocket.id);
             })
