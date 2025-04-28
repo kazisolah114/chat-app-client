@@ -5,16 +5,17 @@ import { useSelector } from 'react-redux';
 import useGetRealTimeMessage from '@/hooks/useGetRealTimeMessage';
 
 const Messages = () => {
-    useGetMessages();
     useGetRealTimeMessage();
+    useGetMessages();
     const messages = useSelector((state) => state.message.messages);
+    console.log("Messages:", messages);
     const { selectedUser, authState } = useSelector((state) => state.persistedReducer.user)
-    if(!messages) return ;
+    if (messages.length < 1) return <div>No conversatin found!</div>;
     return (
         <div className='overflow-auto'>
-            {messages?.map((message) => {
+            {messages.map((message, index) => {
                 return (
-                    <Message key={message._id} message={message} selectedUser={selectedUser} authState={authState} />
+                    <Message key={index} message={message} selectedUser={selectedUser} authState={authState} />
                 )
             })}
         </div>

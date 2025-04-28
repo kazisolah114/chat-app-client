@@ -4,11 +4,9 @@ import MessageContainer from '../MessageContainer/MessageContainer';
 
 const HomePage = () => {
     return (
-        <div className='w-full flex items-center justify-center'>
-            <div className='flex justify-center h-[33rem] bg-gray-100 rounded '>
-                <Sidebar />
-                <MessageContainer />
-            </div>
+        <div className='grid grid-cols-12 h-full w-full bg-gray-100 rounded '>
+            <Sidebar />
+            <MessageContainer />
         </div>
     );
 };

@@ -22,8 +22,8 @@ const SearchUser = () => {
     }
     return (
         <div className='border-b pb-3 mb-3'>
-            <form className='flex items-center gap-2'>
-                <input type="text" placeholder='Name' className='px-2 py-2 rounded outline-none text-gray-800 bg-white'
+            <form className='flex items-center gap-2 '>
+                <input type="text" placeholder='Name' className='px-2 py-2 w-full rounded outline-none text-gray-800 bg-white'
                     name="name"
                     value={userSearch}
                     onChange={handleUserSearch}

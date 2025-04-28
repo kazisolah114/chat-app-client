@@ -4,7 +4,7 @@ import OtherUsers from './OtherUsers';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-import { setAuthUser } from '@/redux/features/userSlice';
+import { setAuthUser, setSelectedUser } from '@/redux/features/userSlice';
 
 const Sidebar = () => {
     const router = useRouter();
@@ -14,16 +14,17 @@ const Sidebar = () => {
             const res = await axios.get(`http://localhost:8000/api/user/logout`, {
                 withCredentials: true,
             })
-            if(res.status === 200) {
+            if (res.status === 200) {
                 dispatch(setAuthUser(null))
+                dispatch(setSelectedUser(null))
                 router.push("/login")
             }
-        } catch(error) {
+        } catch (error) {
             console.log(error)
         }
     }
     return (
-        <div className='overflow-auto p-3'>
+        <div className='col-span-3 max-h-screen overflow-auto p-3'>
             <SearchUser />
             <OtherUsers />
             <div className='mt-4'>

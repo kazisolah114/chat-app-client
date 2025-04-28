@@ -1,8 +1,11 @@
+import { setMessage } from '@/redux/features/messageSlice';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { HiOutlinePaperAirplane } from 'react-icons/hi2';
+import { useDispatch } from 'react-redux';
 
 const SendMessage = ({ selectedUser }) => {
+    const dispatch = useDispatch();
     const [message, set_message] = useState("");
     const handleSendMessage = async (e) => {
         e.preventDefault();
@@ -13,6 +16,8 @@ const SendMessage = ({ selectedUser }) => {
                 },
                 withCredentials: true
             })
+            console.log("send message response:",response.data);
+            dispatch(setMessage(response.data.newMessage))
         } catch (error) {
             console.log(error);
         }

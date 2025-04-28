@@ -12,7 +12,7 @@ export default function Home() {
     return <Login />
   }
   return (
-    <div className="h-screen flex justify-between">
+    <div className="h-screen w-full flex justify-between">
       <HomePage />
     </div>
   );
